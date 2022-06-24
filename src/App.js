@@ -31,7 +31,7 @@ const App = () => {
           return {
             id: task.id,
             title: task.title,
-            is_complete: task.is_complete,
+            isComplete: task.is_complete,
           };
         });
         setTaskData(newTasks);
@@ -50,7 +50,7 @@ const App = () => {
         for (const task of taskData) {
           const newTask = { ...task };
           if (newTask.id === id) {
-            newTask.is_complete = !newTask.is_complete;
+            newTask.isComplete = !newTask.isComplete;
           }
           newTasks.push(newTask);
         }
@@ -71,14 +71,22 @@ const App = () => {
   // };
 
   const deleteTask = (id) => {
-    const newTasks = [];
-    for (const task of taskData) {
-      if (task.id !== id) {
-        newTasks.push(task);
-      }
-      setTaskData(newTasks);
-    }
+    axios
+      .delete(`${URL}/${id}`)
+      .then(() => {
+        const newTasks = [];
+        for (const task of taskData) {
+          if (task.id !== id) {
+            newTasks.push(task);
+          }
+        }
+        setTaskData(newTasks);
+       })
+       .catch((err) => {
+          console.log(err);
+      });
   };
+
   return (
     <div className="App">
       <header className="App-header">

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import './Task.css';
 
-const Task = ({ id, title, is_complete, onUpdate, deleteCallBack }) => {
+const Task = ({ id, title, isComplete, onUpdate, deleteCallBack }) => {
   const completeMe = () => {
     // const updatedTask = {
     //   id: id,
@@ -18,7 +18,7 @@ const Task = ({ id, title, is_complete, onUpdate, deleteCallBack }) => {
     deleteCallBack(id);
   };
 
-  const buttonClass = is_complete ? 'tasks__item__toggle--completed' : '';
+  const buttonClass = isComplete ? 'tasks__item__toggle--completed' : '';
   return (
     <li className="tasks__item">
       <button
@@ -38,7 +38,7 @@ const Task = ({ id, title, is_complete, onUpdate, deleteCallBack }) => {
 Task.propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
-  is_complete: PropTypes.bool.isRequired,
+  isComplete: PropTypes.bool.isRequired,
   onUpdate: PropTypes.func,
   deleteCallBack: PropTypes.func,
 };
