@@ -3,6 +3,7 @@ import TaskList from './components/TaskList.js';
 import './App.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import TaskForm from './components/TaskForm.js';
 
 // const TASKS = [
 //   {
@@ -46,7 +47,7 @@ const App = () => {
     
     let path = `${URL}/${id}/mark_complete`;
     if (isComplete) {
-    path = `${URL}/${id}/mark_incomplete`}
+    path =`${URL}/${id}/mark_incomplete`}
     axios
       .patch(path)
       .then(() => {
@@ -82,7 +83,16 @@ const App = () => {
           console.log(err);
       });
   };
-
+const addTask = (taskInfo) => {
+  axios.post(URL, taskInfo)
+  .then((res) => {
+    fetchTasks();
+    console.log(res);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+ };
   return (
     <div className="App">
       <header className="App-header">
@@ -94,7 +104,8 @@ const App = () => {
             tasks={taskData}
             onUpdate={updateData}
             deleteCallBack={deleteTask}
-          />
+          ></TaskList>
+          <TaskForm addTaskCallBack = {addTask}></TaskForm>
         </div>
       </main>
     </div>

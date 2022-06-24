@@ -21,6 +21,7 @@
   text-decoration: line-through;
   background-color: rgba(0, 128, 0, 0.15);
   border-color: rgba(0, 128, 0, 0.2);
+  color: green;
 }
 
 .tasks__item__toggle {

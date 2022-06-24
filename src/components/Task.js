@@ -41,6 +41,7 @@ Task.propTypes = {
   isComplete: PropTypes.bool.isRequired,
   onUpdate: PropTypes.func,
   deleteCallBack: PropTypes.func,
+  addTaskCallBack: PropTypes.func
 };
 
 export default Task;
