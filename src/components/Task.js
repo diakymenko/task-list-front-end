@@ -11,7 +11,7 @@ const Task = ({ id, title, isComplete, onUpdate, deleteCallBack }) => {
     //   isComplete: !is_complete,
     // };
     console.log('calling completeMe');
-    onUpdate(id);
+    onUpdate(id, isComplete);
   };
 
   const deleteMe = () => {

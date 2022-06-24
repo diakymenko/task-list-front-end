@@ -42,9 +42,13 @@ const App = () => {
   };
   useEffect(fetchTasks, []);
 
-  const updateData = (id) => {
+  const updateData = (id, isComplete) => {
+    
+    let path = `${URL}/${id}/mark_complete`;
+    if (isComplete) {
+    path = `${URL}/${id}/mark_incomplete`}
     axios
-      .patch(`${URL}/${id}/mark_complete`)
+      .patch(path)
       .then(() => {
         const newTasks = [];
         for (const task of taskData) {
@@ -59,16 +63,8 @@ const App = () => {
       .catch((err) => {
         console.log(err);
       });
-  };
-  //   const tasks = taskData.map((task) => {
-  //     if (task.id === updatedTask.id) {
-  //       return updatedTask;
-  //     } else {
-  //       return task;
-  //     }
-  //   });
-  //   setTaskData(tasks);
-  // };
+};
+
 
   const deleteTask = (id) => {
     axios
@@ -104,5 +100,6 @@ const App = () => {
     </div>
   );
 };
+
 
 export default App;
