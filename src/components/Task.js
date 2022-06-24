@@ -3,31 +3,34 @@ import PropTypes from 'prop-types';
 
 import './Task.css';
 
-const Task = ({ id, title, isComplete, onUpdate, deleteCallBack }) => {
-  // const [complete, setComplete] = useState(isComplete);
-  const completeMe =() => {
-    const updatedTask = {
-      id:id,
-      title: title,
-      isComplete: !isComplete,
-    };
-    onUpdate(updatedTask);
+const Task = ({ id, title, is_complete, onUpdate, deleteCallBack }) => {
+  const completeMe = () => {
+    // const updatedTask = {
+    //   id: id,
+    //   title: title,
+    //   isComplete: !is_complete,
+    // };
+    console.log('calling completeMe');
+    onUpdate(id);
   };
 
   const deleteMe = () => {
-    deleteCallBack(id); 
+    deleteCallBack(id);
   };
 
-  const buttonClass = isComplete ? 'tasks__item__toggle--completed' : '';
+  const buttonClass = is_complete ? 'tasks__item__toggle--completed' : '';
   return (
     <li className="tasks__item">
       <button
         className={`tasks__item__toggle ${buttonClass}`}
-        onClick = {completeMe}
+        onClick={(console.log('Clicked Complete'), completeMe)}
       >
         {title}
       </button>
-      <button onClick = {deleteMe}className="tasks__item__remove button">x</button>
+
+      <button onClick={deleteMe} className="tasks__item__remove button">
+        x
+      </button>
     </li>
   );
 };
@@ -35,9 +38,9 @@ const Task = ({ id, title, isComplete, onUpdate, deleteCallBack }) => {
 Task.propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
-  isComplete: PropTypes.bool.isRequired,
+  is_complete: PropTypes.bool.isRequired,
   onUpdate: PropTypes.func,
-  deleteCallBack: PropTypes.func
+  deleteCallBack: PropTypes.func,
 };
 
 export default Task;
